@@ -1,6 +1,7 @@
 <h1>All Tasks</h1>
 <ul>
-  <% @example_tasks.each do |task| %>
-    <li><%= task[:name].capitalize %></li>
+  <% @tasks.each do |t| %>
+    <li><%= link_to "#{t.title.capitalize}", task_path(t) %></li>
+
   <% end %>
 </ul>

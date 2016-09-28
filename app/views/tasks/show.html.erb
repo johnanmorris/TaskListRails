@@ -14,12 +14,20 @@ All markup in all views should have semantic relevance.
 -->
 
 <h1>
-  <%# The below causes an error and bipasses the rescue loop ... why?? %>
-    <%= @task["name"].capitalize %>
+    <%= @task.title.capitalize %>
 </h1>
 
 <ul>
-  <% @task.each do |key, value| %>
-    <li><strong><%= key.capitalize %>:</strong> <%= value %></li>
-  <% end %>
+  <li>
+    <strong>Description:</strong> <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>Date completed:</strong>
+    <% if @task.completed_at == nil %>
+      not yet completed
+    <% else %>
+      <%= @task.completed_at.strftime("%B %e, %Y (%I:%M:%S %p)") %>
+     <% end %>
+  </li>
 </ul>
