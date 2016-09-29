@@ -7,10 +7,28 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def new; end
+  def new
+    @task = Task.new
+  end
 
   def create
-    redirect_to tasks_path
+    @task = Task.new(task_params)
+    if @task.save
+      redirect_to tasks_path
+    else
+      render :new
+    end
   end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:title, :description, :is_completed)
+  end
+
 
 end

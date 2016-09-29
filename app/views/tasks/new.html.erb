@@ -1,21 +1,11 @@
-<form action="/tasks" method="post" accept-charset="utf-8">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<h1>Add Task</h1>
 
-<p>
-  <label for="title">Title: </label>
-  <input type="text" name="title" value="" id="title">
-</p>
+<%= form_for @task do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
+  <%= f.label :description %>
+  <%= f.text_field :description %>
 
-<p>
-  <label for="description">Description: </label>
-  <input type="text" name="description" value="" id="title">
-</p>
-
-<p>
-  <label for="completed-at">Completed?: </label>
-  <input type="checkbox" name="completed-at" value="completed" id="completed-at">
-</p>
-
-  <input type="submit" value="Submit">
-</form>
+  <%= f.submit "Submit" %>
+<% end %>
