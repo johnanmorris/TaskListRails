@@ -6,7 +6,7 @@
   <% if t.completed_at == nil %>
     <%= form_for t, html: {class: "completed"} do |f| %>
       <%= f.hidden_field :completed_at, value: Time.now.utc %>
-      <%= f.submit "Complete?" %>
+      <%= f.submit "Complete?", data: {confirm: "Are you sure?"} %>
     <% end %>
   <% else %>
     <em>(Completed)</em>
