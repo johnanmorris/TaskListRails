@@ -10,14 +10,11 @@
   </li>
 
   <li>
-    <strong>Date completed:</strong>
-    <% if @task.completed_at == nil %>
-      not yet completed
-    <% else %>
-      <%= @task.completed_at.strftime("%B %e, %Y (%I:%M:%S %p)") %>
-     <% end %>
+    <strong>Date completed:</strong> <%= formatted_time(@task) %>
   </li>
 </ul>
+
+<%= link_to "edit", task_edit_path(@task) %>
 
 <p>
   <%= link_to "Home", tasks_path %>
