@@ -3,7 +3,7 @@
   <% @tasks.each do |t| %>
     <li><%= link_to "#{t.title.capitalize}", task_path(t) %>
       [<%= link_to "edit", task_edit_path(t) %> /
-      <%= link_to "delete", task_delete_path(t), method: "delete", data: { confirm: "Are you sure you want to delete this task?" } %>]</li>
+      <%= link_to "delete", task_path(t), method: "delete", data: { confirm: "Are you sure you want to delete this task?" } %>]</li>
   <% end %>
 </ul>
 
