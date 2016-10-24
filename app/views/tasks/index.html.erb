@@ -1,28 +1,22 @@
 <h1>All Tasks</h1>
 
-<ul>
-<% @tasks.each do |t| %>
- <li>
-  <% if t.completed_at == nil %>
-    <%= form_for t, html: {class: "completed"} do |f| %>
-      <%= f.hidden_field :completed_at, value: Time.now.utc %>
-      <%= f.submit "Complete?", data: {confirm: "Are you sure?"} %>
-    <% end %>
-  <% else %>
-    <em>(Completed)</em>
+<main>
+  <% @tasks.each do |task| %>
+  <p>
+    <%= link_to_if task.completed_at.nil?, "(complete)", complete_path(task), method: "patch", class: "small button" %>
+    <%= link_to "#{task.title.capitalize}", task_path(task) %> (<%= formatted_time(task) %>) &ndash;
+    <%= link_to "delete", task_path(task),
+                method: "delete",
+                data: { confirm: "Are you sure you want to delete this task?" } %>
+  </p>
   <% end %>
-  <%= link_to "#{t.title.capitalize}", task_path(t) %> (<%= formatted_time(t) %>) &ndash;
-  <%= link_to "delete", task_path(t),
-              method: "delete",
-              data: { confirm: "Are you sure you want to delete this task?" } %>
-  </li>
-<% end %>
-</ul>
+</main>
+
 
 <p>
   <%= link_to "Add a New Task!", new_task_path %>
 </p>
 
 <p>
-  <%= button_to "Logout", sessions_path, method: :delete %>
+  <%= login_link %>
 </p>

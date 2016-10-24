@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  def login; end
+
   def create
     auth_hash = request.env['omniauth.auth']
     redirect_to login_failure_path unless auth_hash['uid']
@@ -10,23 +12,11 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = @user.id
-    redirect_to sessions_path
+    redirect_to tasks_path
   end
 
-  def index
-    if session[:user_id].nil?
-      redirect_to login_failure_path
-    else
-      @user = User.find(session[:user_id])
-      redirect_to tasks_path
-    end
-  end
-
-  def destroy
+  def logout
     session.delete(:user_id)
-    redirect_to login_failure_path #This should be something else. maybe root_path?
   end
 
-  def login_failure
-  end
 end

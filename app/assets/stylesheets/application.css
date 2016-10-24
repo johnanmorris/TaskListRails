@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url('foundation.css');
+
+body {
+  margin: 2em;
+}
+
+h1, h2 {
+  text-align: center;
+}
