@@ -6,19 +6,18 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   private
+    def current_user
+      begin
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
+    end
 
-  def require_login
-    begin
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    rescue ActiveRecord::RecordNotFound
-      nil
+    def require_login
+      if current_user.nil?
+        flash[:error] = "You must be logged in to view this section"
+        redirect_to login_path
+      end
     end
   end
-
-  def current_user
-    if current_user.nil?
-      flash[:error] = "You are not logged in."
-      redirect_to login_path
-    end
-  end
-end

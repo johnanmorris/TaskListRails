@@ -1,11 +1,20 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
-  description: MyString
-  completed_at: 2016-09-28 14:10:56
-
+  title: Go to the store
+  description: we need milk
+  user_id: hilarious
 two:
-  title: MyString
-  description: MyString
-  completed_at: 2016-09-28 14:10:56
+  title: Buy some bread
+  description: I like sandwiches
+  user_id: chanda
+three:
+  title: finish War and Peace
+  description: I started 5 yrs ago and still haven't finished
+  user_id: chanda
+four:
+  title: fix the brakes
+  description: wibbly-wobbly, timey-whimy
+  user_id: doctor
+five:
+  title: write an email to mom
+  description: dear ma....
+  user_id: hilarious
